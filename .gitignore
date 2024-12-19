@@ -1,0 +1,63 @@
+# Ignore object files, static and dynamic libraries
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+
+# Ignore executables
+*.exe
+*.out
+*.elf
+
+# Ignore dependency and build files
+*.d
+*.dep
+*.log
+
+# Ignore generated files
+*.gen.c
+*.gen.h
+
+# Ignore build directories
+build/
+dist/
+obj/
+bin/
+
+# Ignore IDE and editor-specific files
+*.swp
+*~
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-workspace
+*.sublime-project
+
+# Ignore debugging files
+*.stackdump
+core
+
+# Ignore autotools files
+autom4te.cache/
+configure
+config.log
+config.status
+depcomp
+install-sh
+missing
+Makefile.in
+Makefile.am
+aclocal.m4
+ltmain.sh
+libtool
+
+# Ignore test outputs
+*.gcda
+*.gcno
+*.gcov
+
+# Ignore temporary files
+*.DS_Store
+*Thumbs.db
+

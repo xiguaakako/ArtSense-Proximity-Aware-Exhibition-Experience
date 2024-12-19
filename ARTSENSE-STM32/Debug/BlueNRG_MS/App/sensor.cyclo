@@ -1,0 +1,6 @@
+../BlueNRG_MS/App/sensor.c:91:6:Set_DeviceConnectable	1
+../BlueNRG_MS/App/sensor.c:145:6:user_notify	18
+../BlueNRG_MS/App/sensor.c:262:6:GAP_DisconnectionComplete_CB	1
+../BlueNRG_MS/App/sensor.c:277:6:GAP_ConnectionComplete_CB	2
+../BlueNRG_MS/App/sensor.c:289:6:update_advertising_status	2
+../BlueNRG_MS/App/sensor.c:332:6:check_and_advertise	5

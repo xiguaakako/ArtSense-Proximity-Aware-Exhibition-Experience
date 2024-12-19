@@ -1,0 +1,3 @@
+../BlueNRG_MS/App/gatt_db.c:81:12:Add_HWServW2ST_Service	3
+../BlueNRG_MS/App/gatt_db.c:167:12:Acc_Update	2
+../BlueNRG_MS/App/gatt_db.c:252:6:Read_Request_CB	3
