@@ -102,7 +102,7 @@ Refer to the individual README files within the Android application directories 
 Refer to the [STM32 Firmware README](ARTSENSE-STM32/README.md) for details on customizing:
 
 * **Device Name (Artwork Association):** Configure the default name broadcast by the beacon.
-* **Shake Sensitivity:** Adjust the accelerometer sensitivity for detecting movement.
+* **Rock Sensitivity:** Adjust the accelerometer sensitivity for detecting movement.
 * **BLE Advertising Parameters:** Modify advertising intervals and other BLE settings.
 * **Debugging Options:** Enable debugging output for development.
 

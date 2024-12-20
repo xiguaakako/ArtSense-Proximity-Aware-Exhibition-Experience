@@ -8,7 +8,7 @@ This project contains the firmware designed for the STM32 microcontroller, which
 
 * **BLE Broadcasting for Proximity Detection:** The STM32 constantly broadcasts a BLE signal. The strength of this signal (RSSI) is measured by the user's Android phone to estimate the distance between the user and the artwork. This enables the automatic triggering of the audio guide feature as users approach exhibits.
 * **Dynamic Artwork Naming via BLE Service:** This firmware implements a BLE service that allows curators to remotely update the displayed name of the artwork associated with the specific STM32 device. This eliminates the need to re-flash the firmware whenever artwork information changes.
-* **Shake Detection for Security Alerts:**  An integrated accelerometer monitors for movement. If the device is shaken or disturbed, the firmware changes the broadcasted BLE message to alert curators that the artwork may be in danger.
+* **Rock Detection for Security Alerts:**  An integrated accelerometer monitors for movement. If the device is disturbed, the firmware changes the broadcasted BLE message to alert curators that the artwork may be in danger.
 
 ## Getting Started
 
@@ -40,9 +40,9 @@ To enable debugging features (such as `printf` statements for logging and monito
 //#define BLE_DEBUG
 ```
 
-### Configuring Device Name and Shake Sensitivity
+### Configuring Device Name and Rock Sensitivity
 
-The default device name (representing the initial artwork) and the sensitivity of the shake detection can be configured within the `BlueNRG_MS/App/global.h` file.
+The default device name (representing the initial artwork) and the sensitivity of the rock detection can be configured within the `BlueNRG_MS/App/global.h` file.
 
 **Device Name:**
 
@@ -55,14 +55,14 @@ Modify the `DEVICE_NAME` macro to set the desired default name of the BLE device
 //                   "00000000000000000"
 ```
 
-**Shake Sensitivity:**
+**Rock Sensitivity:**
 
-Adjust the `SENSITIVITY` macro to control how sensitive the accelerometer is to detect shaking. A lower value will make the detection more sensitive, while a higher value will require more significant movement to trigger an alert.
+Adjust the `SENSITIVITY` macro to control how sensitive the accelerometer is to detect rocking. A lower value will make the detection more sensitive, while a higher value will require more significant movement to trigger an alert.
 
 ```c
 // BlueNRG_MS/App/global.h
 
-#define SENSITIVITY 10 // Adjust the sensitivity of the shake detection
+#define SENSITIVITY 10 // Adjust the sensitivity of the rock detection
 ```
 
 **Important Notes:**
