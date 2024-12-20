@@ -1,7 +1,7 @@
 # ArtSense: Proximity-Aware Exhibition Experience
 
-[![GitHub Stars](https://img.shields.io/github/stars/xiguaakako/ES-TP?style=social)](https://github.com/xiguaakako/ES-TP/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/xiguaakako/ES-TP)](https://github.com/xiguaakako/ES-TP/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience?style=social)](https://github.com/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience)](https://github.com/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience/issues)
 
 ArtSense is an innovative project designed to enhance the museum and gallery experience through proximity-aware technology. By leveraging Bluetooth Low Energy (BLE), ArtSense provides visitors with contextually relevant information about artworks as they explore exhibitions, and offers curators powerful tools for managing and securing their collections.
 
@@ -58,8 +58,8 @@ To set up and run the ArtSense project, follow these steps:
 **1. Clone the Repository:**
 
 ```bash
-git clone https://github.com/xiguaakako/ES-TP.git
-cd ES-TP
+git clone https://github.com/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience.git
+cd ArtSense-Proximity-Aware-Exhibition-Experience
 ```
 
 **2. Set up the Android Applications:**
@@ -109,7 +109,7 @@ Refer to the [STM32 Firmware README](ARTSENSE-STM32/README.md) for details on cu
 ## Project Structure
 
 ```
-ES-TP/
+ArtSense-Proximity-Aware-Exhibition-Experience/
 ├── android-app/          # Source code for the Android Visitor Application
 │   ├── app/
 │   ├── ...
@@ -124,5 +124,5 @@ ES-TP/
 
 ## Contact
 
-For questions, bug reports, or feature requests, please open an issue on our [GitHub repository](https://github.com/xiguaakako/ES-TP/issues).
+For questions, bug reports, or feature requests, please open an issue on our [GitHub repository](https://github.com/xiguaakako/ArtSense-Proximity-Aware-Exhibition-Experience/issues).
 
