@@ -1,115 +1,80 @@
+# ArtSense Peripheral Application - STM32 Firmware
 
-## <b>SensorDemo_BLESensor-App Application Description</b>
-  
-This application shows how to implement proprietary BLE profiles.
-The communication is done using a STM32 Nucleo board and a Smartphone with BTLE.
+## Overview
 
-Example Description:
+This project contains the firmware designed for the STM32 microcontroller, which acts as a crucial peripheral device within the ArtSense proximity-aware exhibition experience. The STM32 board leverages Bluetooth Low Energy (BLE) to provide key functionalities for the system.
 
-This application shows how to implement a peripheral device tailored for 
-interacting with the "ST BLE Sensor" app for Android/iOS devices.
+**Key Responsibilities:**
 
-The "ST BLE Sensor" app is freely available on both GooglePlay and iTunes
-  - iTunes: https://itunes.apple.com/us/app/st-bluems/id993670214
-  - GooglePlay: https://play.google.com/store/apps/details?id=com.st.bluems
-The source code of the "ST BLE Sensor" app is available on GitHub at:
-  - iOS: https://github.com/STMicroelectronics-CentralLabs/STBlueMS_iOS
-  - Android: https://github.com/STMicroelectronics-CentralLabs/STBlueMS_Android
+* **BLE Broadcasting for Proximity Detection:** The STM32 constantly broadcasts a BLE signal. The strength of this signal (RSSI) is measured by the user's Android phone to estimate the distance between the user and the artwork. This enables the automatic triggering of the audio guide feature as users approach exhibits.
+* **Dynamic Artwork Naming via BLE Service:** This firmware implements a BLE service that allows curators to remotely update the displayed name of the artwork associated with the specific STM32 device. This eliminates the need to re-flash the firmware whenever artwork information changes.
+* **Shake Detection for Security Alerts:**  An integrated accelerometer monitors for movement. If the device is shaken or disturbed, the firmware changes the broadcasted BLE message to alert curators that the artwork may be in danger.
 
-@note: NO SUPPORT WILL BE PROVIDED TO YOU BY STMICROELECTRONICS FOR ANY OF THE
-ANDROID/iOS app INCLUDED IN OR REFERENCED BY THIS PACKAGE.
+## Getting Started
 
-After establishing the connection between the STM32 board and the smartphone:
- -  the temperature and the pressure emulated values are sent by the STM32 board to 
-    the mobile device and are shown in the ENVIRONMENTAL tab;
- -  the emulated sensor fusion data sent by the STM32 board to the mobile device 
-    reflects into the cube rotation showed in the app's MEMS SENSOR FUSION tab
- -  the plot of the emulated data (temperature, pressure, sensor fusion data, 
-    accelerometer, gyroscope and magnetometer) sent by the board are shown in the 
-	PLOT DATA tab;
- -  in the RSSI & Battery tab the RSSI value is shown.
-According to the value of the #define USE_BUTTON in file app_bluenrg_ms.c, the 
-environmental and the motion data can be sent automatically (with 1 sec period) 
-or when the User Button is pressed.
+This project is developed using the STM32CubeMX and is intended to be built and flashed using the CubeIDE.
 
-The communication is done using a vendor specific profile.
+**Prerequisites:**
 
-Known limitations:
+* STM32CubeIDE installed on your development machine.
+* Familiarity with STM32 microcontroller programming and the HAL library.
 
-- When starting the project from Example Selector in STM32CubeMX and regenerating it
-  from ioc file, you may face a build issue. To solve it, if you started the project for the
-  Nucleo-L476RG board, remove from the IDE project the file stm32l4xx_nucleo.c in the Application/User
-  virtual folder and delete, from Src and Inc folders, the files: stm32l4xx_nucleo.c, stm32l4xx_nucleo.h
-  and stm32l4xx_nucleo_errno.h.
+**Steps to Launch:**
 
-### <b>Keywords</b>
+1. Open the project in STM32CubeIDE.
+2. Build the project.
+3. Flash the generated binary onto your target STM32 development board.
 
-BLE, Peripheral, SPI, BlueNRG-M0, BlueNRG-MS
+## Customization
 
-### <b>Directory contents</b>
+The firmware offers several customization options through preprocessor macros.
 
- - app_bluenrg_ms.c       SensorDemo_BLESensor-App initialization and applicative code
- 
- - gatt_db.c              Functions for building GATT DB and handling GATT events
- 
- - hci_tl_interface.c     Interface to the BlueNRG HCI Transport Layer 
- 
- - main.c                 Main program body
-  
- - sensor.c               Sensor init and state machine
- 
- - stm32**xx_hal_msp.c    Source code for MSP Initialization and de-Initialization
+### Enabling Debugging
 
- - stm32**xx_it.c         Source code for interrupt Service Routines
+To enable debugging features (such as `printf` statements for logging and monitoring), uncomment or add the `BLE_DEBUG` macro definition within the `BlueNRG_MS/Target/bluenrg_conf.h` file.
 
- - stm32**xx_nucleo.c     Source file for the BSP Common driver 
-						
- - stm32**xx_nucleo_bus.c Source file for the BSP BUS IO driver
- 
- - system_stm32**xx.c     CMSIS Cortex-Mx Device Peripheral Access Layer System Source File
+```c
+// BlueNRG_MS/Target/bluenrg_conf.h
 
- - target_platform.c      Get information on the target device memory
-  
-### <b>Hardware and Software environment</b>
+// Uncomment the following line to enable debugging
+//#define BLE_DEBUG
+```
 
-  - This example runs on STM32 Nucleo boards with X-NUCLEO-IDB05A2 STM32 expansion board
-    (the X-NUCLEO-IDB05A1 expansion board can be also used)
-  - This example has been tested with STMicroelectronics:
-    - NUCLEO-L476RG RevC board
-    and can be easily tailored to any other supported device and development board.
+### Configuring Device Name and Shake Sensitivity
 
-ADDITIONAL_BOARD : X-NUCLEO-IDB05A2 https://www.st.com/en/ecosystems/x-nucleo-idb05a2.html
-ADDITIONAL_COMP : BlueNRG-M0 https://www.st.com/en/wireless-connectivity/bluenrg-m0.html
+The default device name (representing the initial artwork) and the sensitivity of the shake detection can be configured within the `BlueNRG_MS/App/global.h` file.
 
-### <b>How to use it?</b>
+**Device Name:**
 
-In order to make the program work, you must do the following:
+Modify the `DEVICE_NAME` macro to set the desired default name of the BLE device. This name is typically associated with the artwork the STM32 is placed near.
 
- - WARNING: before opening the project with any toolchain be sure your folder
-   installation path is not too in-depth since the toolchain may report errors
-   after building.
+```c
+// BlueNRG_MS/App/global.h
+// Example: Set the default artwork name
+# define DEVICE_NAME "Guernica         " 
+//                   "00000000000000000"
+```
 
- - Open STM32CubeIDE (this firmware has been successfully tested with Version 1.13.0).
-   Alternatively you can use the Keil uVision toolchain (this firmware
-   has been successfully tested with V5.37.0) or the IAR toolchain (this firmware has 
-   been successfully tested with Embedded Workbench V9.20.1).
+**Shake Sensitivity:**
 
- - Rebuild all files and load your image into target memory.
+Adjust the `SENSITIVITY` macro to control how sensitive the accelerometer is to detect shaking. A lower value will make the detection more sensitive, while a higher value will require more significant movement to trigger an alert.
 
- - Run the example.
+```c
+// BlueNRG_MS/App/global.h
 
- - Alternatively, you can download the pre-built binaries in "Binary" 
-   folder included in the distributed package.
+#define SENSITIVITY 10 // Adjust the sensitivity of the shake detection
+```
 
-### <b>Author</b>
+**Important Notes:**
 
-SRA Application Team
+* The `DEVICE_NAME` is the initial name broadcasted by the BLE device. This can be updated dynamically via the BLE service.
+* Experiment with the `SENSITIVITY` value to find the optimal setting for your specific installation and to minimize false positives.
 
-### <b>License</b>
+## Directory Structure (Relevant for Customization)
 
-Copyright (c) 2023 STMicroelectronics.
-All rights reserved.
+* **BlueNRG_MS/Target/bluenrg_conf.h:** Contains BlueNRG configuration settings, including the `BLE_DEBUG` macro.
+* **BlueNRG_MS/App/global.h:**  Defines global macros like `DEVICE_NAME` and `SENSITIVITY`.
 
-This software is licensed under terms that can be found in the LICENSE file
-in the root directory of this software component.
-If no LICENSE file comes with this software, it is provided AS-IS.
+## Further Information
+
+For a comprehensive understanding of the ArtSense project, including the overall system architecture, techniques leveraged, and work distribution, please refer to the project report.
